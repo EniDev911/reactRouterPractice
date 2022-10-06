@@ -1,26 +1,43 @@
-import reactLogo from './assets/react.svg'
 import './App.css'
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  useRoutes
 } from 'react-router-dom'
 
 // page
 import {PageOne, PageTwo} from './pages/Page'
 import {MainPage} from './pages/MainPage'
 
+function Routes(){
+  const routes = useRoutes([
+    {
+      path: '/',
+      element: <MainPage/>,
+      children:[
+        {
+          index: true,
+          element: <div>Página index</div>
+        },
+        {
+          path: '*',
+          element: <PageOne/>
+        },
+        {
+          path: 'two',
+          element: <PageTwo />
+        }
+      ]
+    }
+  ])
+  return routes;
+}
+
 function App() {
 
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <Route path='/' element={<MainPage/>}>
-            <Route index element={<div>Página no seleccionada</div>} />
-            <Route path='*' element={<PageOne/>}/>
-            <Route path='two' element={<PageTwo/>}/>
-          </Route>
-        </Routes>
+        <Routes/>
       </Router>
     </div>
   )
