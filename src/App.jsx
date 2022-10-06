@@ -26,11 +26,17 @@ function Routes(){
         },
         {
           path: '*',
-          element: <PageOne/>
+          element: <PageOne/>,
+        },
+        {
+          path: 'one',
+          element: <PageOne />,
+          children:[{path: ':id', element: <PageOne/>}]
         },
         {
           path: 'two',
-          element: <PageTwo />
+          element: <PageTwo />,
+          children:[{path: ':id', element: <PageTwo />}]
         }
       ]
     }
