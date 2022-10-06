@@ -1,7 +1,8 @@
 import './App.css'
+import { useEffect } from 'react'
 import {
   BrowserRouter as Router,
-  useRoutes
+  useRoutes, useLocation
 } from 'react-router-dom'
 
 // page
@@ -9,6 +10,11 @@ import {PageOne, PageTwo} from './pages/Page'
 import {MainPage} from './pages/MainPage'
 
 function Routes(){
+  const location = useLocation();
+  useEffect(() => {
+    console.log('Estás en la ruta', location.pathname);
+  }, [location])
+
   const routes = useRoutes([
     {
       path: '/',
